@@ -6,7 +6,7 @@
 /*   By: qpeng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/28 21:42:52 by qpeng             #+#    #+#             */
-/*   Updated: 2018/09/29 20:45:22 by qpeng            ###   ########.fr       */
+/*   Updated: 2018/09/30 01:18:33 by qpeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -61,7 +61,7 @@
 
  int find_pivot(int *arr, int n)
 {
-	unsigned	i = 0;
+	int			i = 0;
 	long long sum = 0, cur;
 
 	while (i < n)

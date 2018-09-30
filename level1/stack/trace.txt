@@ -1,0 +1,26 @@
+
+ pop : (null)$
+ peek : (null)$
+ is empty : YES$
+-peek : (null)$
+-$
+-is empty : YES$
++peek : NULL$
++NULL $
++is empty : NO$
+ TEST 2 --------------------------$
+ stack 1 : $
+-stack 2 : (null) $
++stack 2 : NULL $
+ stack 1 : is empty : YES$
+ stack 1 : pop : (null)$
+ stack 1 : peek : (null)$
+ stack 2 : is empty : NO$
+ TEST 3 --------------------------$
+-stack 2 : peek : (null)$
++stack 2 : peek : NULL$
+ stack 1 : is empty : NO$
+ stack 2 : is empty : YES$
+-stack 1 : pop : (null)$
++stack 1 : pop : NULL$
+ stack 1 : is empty : YES$

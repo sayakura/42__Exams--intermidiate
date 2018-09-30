@@ -6,7 +6,7 @@
 /*   By: qpeng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/29 02:26:59 by qpeng             #+#    #+#             */
-/*   Updated: 2018/09/29 02:27:08 by qpeng            ###   ########.fr       */
+/*   Updated: 2018/09/30 01:17:31 by qpeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ struct s_queue *init(void)
 
 void enqueue(struct s_queue *queue, void *content)
 {
-	if (queue == NULL)
+	if (queue == NULL || content == NULL)
 		return ;
 	struct s_node *node;
 
@@ -56,6 +56,8 @@ void *dequeue(struct s_queue *queue)
 		queue->first = node->next;
 	else
 		queue->first = NULL;
+	if (!node->content)
+		return (NULL);
 	return (node->content);
 }
 
@@ -66,12 +68,14 @@ void *peek(struct s_queue *queue)
 	struct s_node *node;
 
 	node = queue->first;
+	if (!node->content)
+		return (NULL);
 	return (node->content);
 }
 
 int isEmpty(struct s_queue *queue)
 {
-	if (queue == NULL || queue->first == NULL)
+	if (queue && queue->first == NULL)
 		return (1);
 	else
 		return (0);

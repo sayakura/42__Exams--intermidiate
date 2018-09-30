@@ -6,7 +6,7 @@
 /*   By: qpeng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/29 02:45:58 by qpeng             #+#    #+#             */
-/*   Updated: 2018/09/29 03:06:51 by qpeng            ###   ########.fr       */
+/*   Updated: 2018/09/30 01:01:47 by qpeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void *pop(struct s_stack *stack)
 	void *p;
 
 	node = stack->top;
-	p = node->content;
+	if (!(p = node->content))
+		return (NULL);
 	stack->top = node->next;
 	free(node);
 	return (p);
@@ -60,12 +61,14 @@ void *peek(struct s_stack *stack)
 {
 	if (!stack || stack->top == NULL)
 		return (NULL);
+	if (!stack->top->content)
+		return (NULL);
 	return (stack->top->content);
 }
 
 int isEmpty(struct s_stack *stack)
 {
-	if (!stack || stack->top == NULL)
+	if (stack && stack->top == NULL)
 		return (1);
 	else
 		return (0);
