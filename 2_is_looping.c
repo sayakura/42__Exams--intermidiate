@@ -2,7 +2,7 @@ typedef struct s_node {
 	int value;
 	struct s_node *next;
 } Node;
-
+/* works but seems too naive*/
 int is_looping(Node* node) {
 	
 	Node* i = node;
