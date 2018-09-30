@@ -41,9 +41,9 @@ char 	**str_permu(char str[], int n)
 	{
 		for (int i = 0; i <= n - len; i++)
 		{
-            int j = i + len - 1;
-            per[row]= (char *)malloc(i + 2);
-	      	per[row][i + 1] = '\0';
+			int j = i + len - 1;
+			per[row]= (char *)malloc(i + 2);
+			per[row][i + 1] = '\0';
 	      	col = 0;
 			for (int k = i; k <= j; k++)
 				per[row][col++] = str[k];
@@ -56,21 +56,21 @@ char 	**str_permu(char str[], int n)
 int 	match(char *pat, char *str)
 {
 	int lp = ft_strlen(pat);
-    int ls = ft_strlen(str);
-    char p[SIZE] = {0}, s[SIZE] = {0};
+	int ls = ft_strlen(str);
+	char p[SIZE] = {0}, s[SIZE] = {0};
 
-    for (int i = 0; i < lp; i++)
-    {
-    	p[i] = pat[i];
-    	s[i] = str[i];
-    }
-    for (int i = lp; i <= ls; i++)
-    {
-    	if (cmp(p, s + i - lp) == 0)
-    		return (1);
-    	s[i] = str[i];
-    }
-    return (0);
+	for (int i = 0; i < lp; i++)
+	{
+		p[i] = pat[i];
+		s[i] = str[i];
+	}
+	for (int i = lp; i <= ls; i++)
+	{
+		if (cmp(p, s + i - lp) == 0)
+			return (1);
+		s[i] = str[i];
+	}
+	return (0);
 }
 
 int main(int ac, char **av) {
@@ -87,36 +87,36 @@ int main(int ac, char **av) {
 	}
 	else
 	{
-	    char **pat;
-	    int len = ft_strlen(av[1]);
-	    int av_i = 1;
-	    char *arr_match;
+		char	**pat;
+		int 	len = ft_strlen(av[1]);
+		int 	av_i = 1;
+		char 	*arr_match;
  
-	   	pat = str_permu(av[1], len);
-	   	len = (len * (len + 1)) / 2;
-	    arr_match = (char *)malloc(len);
-	    for (int i = 0; i < len; i++)
-	    	arr_match[i] = 1;
-	   	while (av_i < ac)
-	   	{
-	   		for (int i = 0; i < len; i++)
-	   			if (!match(pat[i], av[av_i]))
-	   				arr_match[i] = 0;
-	   		av_i++;
-	   	}
-	   	for (int i = len - 1; i >= 0; i--)
-	   	{
-	   		if (arr_match[i])
-	   		{
-	   			int p_len = ft_strlen(pat[i]);
-	   			for (int j = i; j >= 0 && ft_strlen(pat[j]) == p_len; j--)
-	   				if (j < i && arr_match[j])
-	   					i = j;
-	   			ps(pat[i]);
-	   			ps("\n");
-	   			break ;
-	   		}
-	   	}
+		pat = str_permu(av[1], len);
+		len = (len * (len + 1)) / 2;
+	   	arr_match = (char *)malloc(len);
+		for (int i = 0; i < len; i++)
+			arr_match[i] = 1;
+		while (av_i < ac)
+		{
+			for (int i = 0; i < len; i++)
+				if (!match(pat[i], av[av_i]))
+					arr_match[i] = 0;
+			av_i++;
+		}
+		for (int i = len - 1; i >= 0; i--)
+		{
+			if (arr_match[i])
+			{
+				int p_len = ft_strlen(pat[i]);
+				for (int j = i; j >= 0 && ft_strlen(pat[j]) == p_len; j--)
+					if (j < i && arr_match[j])
+						i = j;
+				ps(pat[i]);
+				ps("\n");
+				break ;
+			}
+		}
 	   	free(arr_match);
 	   	free(pat);
 	}
