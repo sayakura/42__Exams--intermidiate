@@ -110,8 +110,7 @@ int main(int ac, char **av) {
 	   		if (arr_match[i])
 	   		{
 	   			int p_len = ft_strlen(pat[i]);
-	   			int j = i;
-	   			for (;j >= 0 && ft_strlen(pat[j]) == p_len; j--)
+	   			for (int j = i; j >= 0 && ft_strlen(pat[j]) == p_len; j--)
 	   				if (j < i && arr_match[j])
 	   					i = j;
 	   			ps(pat[i]);
