@@ -36,8 +36,7 @@ char 	**str_permu(char str[], int n)
 	int len = (n * (n + 1)) / 2; 
 	int col, row = 0;
 
-	per = (char **)malloc(sizeof(char *) * len + 1);
-	per[len - 1] = NULL; 
+	per = (char **)malloc(sizeof(char *) * len);
 	for (int len = 1; len <= n; len++)
 	{
 		for (int i = 0; i <= n - len; i++)
@@ -75,7 +74,7 @@ int 	match(char *pat, char *str)
 }
 
 int main(int ac, char **av) {
-	if (ac < 2)
+	if (ac < 2 || av[1][0] == '\0')
 	{
 		ps("\n");
 		return (0);
