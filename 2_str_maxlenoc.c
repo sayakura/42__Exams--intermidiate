@@ -73,15 +73,12 @@ int 	match(char *pat, char *str)
 	return (0);
 }
 
-int main(int ac, char **av) {
-	if (ac < 2 || av[1][0] == '\0')
+int main(int ac, char **av)
+{
+	if (ac <= 2)
 	{
-		ps("\n");
-		return (0);
-	}
-	else if (ac == 2)
-	{
-		ps(av[1]);
+		if (ac == 2)
+			ps(av[1]);
 		ps("\n");
 		return (0);
 	}
