@@ -1,2 +1,2 @@
 Written by Kura Peng.
-Everything with number label is tested.
+some questions have two answers, one might be shorter, and the other one is easier to understand.
