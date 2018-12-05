@@ -1,5 +1,4 @@
 #include <unistd.h>
-#include <stdlib.h>
 
 int len(char *str)
 {
@@ -28,7 +27,8 @@ int		main(int ac, char **av)
 	{
 		int	min_len = 2147483647;
 		int min_i = 1;
-		for (int i = 1; i < ac; i++) {
+		for (int i = 1; i < ac; i++)
+		{
 			int clen = len(av[i]);
 			if (clen< min_len)
 			{	
@@ -37,12 +37,14 @@ int		main(int ac, char **av)
 			}
 		}
 		for(int i = 0, match, offset = min_len; i < min_len ; i++, offset--)
-			for(int j = 0; j <= i; j++) {
+			for(int j = 0; j <= i; j++)
+			{
 				match = 0;
 				for (int avi = 1; avi < ac; avi++)
 					if (avi != min_i && ft_strstr(av[avi], av[min_i], j, j + offset))
 						match++;
-				if(match == ac - 2) {
+				if(match == ac - 2)
+				{
 					for (int i = j; i < j + offset; i++)
 						write(1, &(av[min_i][i]), 1);
 					write(1, "\n", 1);
