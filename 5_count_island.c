@@ -1,3 +1,78 @@
+#include <unistd.h>
+#include <fcntl.h>
+
+void	flood_fill(char *map, int i, char c, int width, int total_b)
+{
+	map[i] = c;
+	if (i > width && map[i - width] == 'X')
+		flood_fill(map, i - width, c, width, total_b);
+	if (i + width < total_b - 1 && map[i + width] == 'X')
+		flood_fill(map, i + width, c, width, total_b);
+	if (i - 1 >= 0 && map[i - 1] == 'X')
+		flood_fill(map, i - 1, c, width, total_b);
+	if (i + 1 < total_b - 1 && map[i + 1] == 'X')
+		flood_fill(map, i + 1, c, width, total_b);
+}
+
+int	main(int ac, char **av)
+{
+	if (ac != 2)
+	{
+		write(1, "\n", 1);
+		return (0);
+	}
+	char map[102400] = {0};
+	int fd = open(av[1], O_RDONLY);
+	int total_b = read(fd, map, 102400);
+
+	if (total_b <= 0)
+	{
+		write(1, "\n", 1);
+		return (0);
+	}
+	int width = 1;
+	int i = 0;
+	while (map[i] != '\n')
+	{
+	 	i++;
+		width++;
+	}
+	int height = 0;
+	for (int i = 0; i < total_b; i++)
+	{
+		if (map[i] != 'X' && map[i] != '.' && map[i] != '\n' && map[i] != '\0')
+		{
+			write(1, "\n", 1);
+        	return (0);
+		}
+		if (map[i] == '\n')
+			height++;
+	}
+
+	if (height * width != total_b)
+	{
+		write(1, "\n", 1);
+		return (0);
+	}
+	char replacer = '0';
+	for (int i = 0; i < total_b; i++)
+	{
+		
+		if (map[i] == 'X') 
+		{
+			flood_fill(map, i, replacer, width, total_b);
+			replacer++;
+		}
+	}
+	if (replacer > ':')
+	{
+		write(1, "\n", 1);
+        return (0);
+	}
+	write(1, map, total_b);
+}
+
+
 
 /*
 COUNT_ISLAND
@@ -89,78 +164,3 @@ $>./count_island rien | cat -e
 $
 $>
 */
-
-
-#include <unistd.h>
-#include <fcntl.h>
-
-void	flood_fill(char *map, int i, char c, int width, int total_b)
-{
-	map[i] = c;
-	if (i > width && map[i - width] == 'X')
-		flood_fill(map, i - width, c, width, total_b);
-	if (i + width < total_b - 1 && map[i + width] == 'X')
-		flood_fill(map, i + width, c, width, total_b);
-	if (i - 1 >= 0 && map[i - 1] == 'X')
-		flood_fill(map, i - 1, c, width, total_b);
-	if (i + 1 < total_b - 1 && map[i + 1] == 'X')
-		flood_fill(map, i + 1, c, width, total_b);
-}
-
-int	main(int ac, char **av)
-{
-	if (ac != 2)
-	{
-		write(1, "\n", 1);
-		return (0);
-	}
-	char map[102400] = {0};
-	int fd = open(av[1], O_RDONLY);
-	int total_b = read(fd, map, 102400);
-
-	if (total_b <= 0)
-	{
-		write(1, "\n", 1);
-		return (0);
-	}
-	int width = 1;
-	int i = 0;
-	while (map[i] != '\n')
-	{
-	 	i++;
-		width++;
-	}
-	int height = 0;
-	for (int i = 0; i < total_b; i++)
-	{
-		if (map[i] != 'X' && map[i] != '.' && map[i] != '\n' && map[i] != '\0')
-		{
-			write(1, "\n", 1);
-        	return (0);
-		}
-		if (map[i] == '\n')
-			height++;
-	}
-
-	if (height * width != total_b)
-	{
-		write(1, "\n", 1);
-		return (0);
-	}
-	char replacer = '0';
-	for (int i = 0; i < total_b; i++)
-	{
-		
-		if (map[i] == 'X') 
-		{
-			flood_fill(map, i, replacer, width, total_b);
-			replacer++;
-		}
-	}
-	if (replacer > ':')
-	{
-		write(1, "\n", 1);
-        return (0);
-	}
-	write(1, map, total_b);
-}
