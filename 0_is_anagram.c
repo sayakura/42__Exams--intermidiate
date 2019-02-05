@@ -6,7 +6,7 @@
 /*   By: qpeng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/28 22:11:07 by qpeng             #+#    #+#             */
-/*   Updated: 2018/09/28 22:41:44 by qpeng            ###   ########.fr       */
+/*   Updated: 2019/02/04 19:39:35 by qpeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -59,6 +59,21 @@ int is_anagram(char *a, char *b)
 	i = 0;
 	while (i < 127)
 		if (times[i++] != 0)
+			return (0);
+	return (1);
+}
+
+int	is_anagram(char *a, char *b)
+{
+	char	hm[126] = {};
+
+	for (int i = 0; a[i] && b[i]; i++)
+	{
+		hm[(int)a[i]]++;
+		hm[(int)b[i]]--;
+	}
+	for (int i = 0; i < 126; i++)
+		if (hm[i])
 			return (0);
 	return (1);
 }

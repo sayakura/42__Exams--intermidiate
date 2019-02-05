@@ -1,14 +1,40 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   equation.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: qpeng <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/28 20:54:35 by qpeng             #+#    #+#             */
-/*   Updated: 2018/09/28 21:31:37 by qpeng            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include <stdio.h>
+
+// soliton 1: 
+void equation(int n) {
+	for (int a = 0; a < 10; a++)
+		for (int b = 0; b < 10; b++)
+			for (int c = 0; c < 10; c++)
+				if ((a * 10 + b) + (c * 10 + a) == n)
+					printf("A = %d, B = %d, C = %d\n", a, b, c);
+}
+
+
+// soliton 2: 
+#define TRUE(a, b, c, n) ((a * 10 + b) + (c * 10 + a) == n) 
+
+void    equation(int n)
+{
+	int a = 0;
+	int b, c;
+	while (a <= 9)
+	{
+		b = 0;
+		while (b <= 9)
+		{
+			c = 0;
+			while (c <= 9)
+			{
+				if (TRUE(a, b, c, n))
+					printf("A = %d, B = %d, C = %d\n", a, b, c);
+				c++;
+			}
+			b++;
+		}
+		a++;
+	}
+}
+
 /*
 	Assignment name  : equation
 	Expected files   : equation.c
@@ -58,38 +84,4 @@
 	Note:
 	- The displayed output will always be sorted in ascending order beginning with A, then B and then C.
 	(as shown in the examples above)
-*/
-
-
-#include <stdio.h>
-
-#define TRUE(a, b, c, n) ((a * 10 + b) + (c * 10 + a) == n) 
-
-void    equation(int n)
-{
-	int a = 0;
-	int b, c;
-	while (a <= 9)
-	{
-		b = 0;
-		while (b <= 9)
-		{
-			c = 0;
-			while (c <= 9)
-			{
-				if (TRUE(a, b, c, n))
-					printf("A = %d, B = %d, C = %d\n", a, b, c);
-				c++;
-			}
-			b++;
-		}
-		a++;
-	}
-}
-/*
-int		main(void)
-{
-	equation(0);
-	return (0);
-}
 */
