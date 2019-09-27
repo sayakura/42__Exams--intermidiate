@@ -91,6 +91,7 @@ int    **range_comb(int n)
 
     int     *arr = malloc(sizeof(int) * n);
     dfs(0, 0, arr);
+    arr_op(arr, CLEAR, 0);
     return ret;
 }
 
